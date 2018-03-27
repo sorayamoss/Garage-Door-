@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+<head>
+  <title>Status</title>
+  <!-- link style sheet -->
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <script src="https://use.fontawesome.com/89281ccf9c.js"></script>
+  <!-- Load Material Design Light Style/Resources: https://getmdl.io/ -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+
+</head>
+<body>
+
+
+
+  <!-- Login Screen -->
+  <div id="login-screen">
+    <!-- Creates center textbox  -->
+    <div class="center-text">
+      <!-- includes user icon -->
+      <i class="fa fa-user-circle fa-5x" id="user-icon" aria-hidden="true"></i><!--  from fontawesome.io -->
+      <!-- Creates textboxes for username and password -->
+      <div class="login">
+        <label class="login-label">Username:
+          <input type="text" class="login-input">
+        </label>
+      </div>
+      <div class="login">
+        <label class = "login-label" >Password:
+          <input type="password" class="login-input">
+        </label>
+      </div>
+      <!-- remember to link button to status page -->
+      <!-- login button -->
+      <!-- <button type="submit" class="button" id="button-login" onclick="load_settings();">Login</button> -->
+
+      <input type="button" class="button" id="button-login" value= "Login" onclick="loadingPage()"/>
+      <!-- Link to Account Creation  -->
+
+
+      <a onclick="load_ac()" id="sign">Don't have an account? Sign up!</a>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Account Creation Screen -->
+  <div id="account-creation">
+    <div class="center-text">
+      <!-- include back button -->
+      <a class="button" onclick="load_login()" id="back-button">
+        Back
+      </a>
+      <!-- includes user icon -->
+      <i class="fa fa-user-circle fa-5x" id="user-icon" aria-hidden="true"></i> <!--  from fontawesome.io -->
+      <!-- New username password and confirm password text boxs -->
+      <div class="login">
+        <label class="login-label">New Username:
+          <input type="text" class="login-input">
+        </label>
+      </div>
+      <div class="login">
+        <label class = "login-label" >New Password:
+          <input type="password" class="login-input">
+        </label>
+      </div>
+      <div class="login">
+        <label class="login-label">Confirm Password:
+          <input type="text" class="login-input">
+        </label>
+      </div>
+      <!-- remember to link button to status page -->
+      <!-- Create new account button -->
+      <!-- <button type="submit" class="button"id="button-AC">Create New Account</button>  -->
+      <a class="button" onclick="load_settings()" id="account-button">
+        Create Account
+      </a>
+    </div>
+  </div>
+
+
+
+
+  <!-- Status Screen -->
+  <div id="status-screen">
+    <div class="center-text">
+      <!-- Link to advanced settings -->
+      <a onclick="load_advanced()">
+        <i class="fa fa-cog fa-3x" id="setting-icon" aria-hidden="true"></i><!--  from fontawesome.io -->
+      </a>
+      <!-- Button to change door status and updates current -->
+      <div id="status-door">
+        <span class="status-label">
+          Current Door Status:
+        </span>
+        <span id="door-status" class="status-box">
+          Open
+        </span>
+      </div>
+      <!-- close garage button -->
+      <div id="garageStatusButton">
+        <input type ="button" class="button" onclick="garage.changeGarage()" id="open_garage" value="Toggle Garage Door"/>
+      </div>
+
+      <!-- Button to change light status and updates current -->
+      <div id="status-light">
+        <span class="status-label">
+          Current Light Status:
+        </span>
+        <span id="light-status" class="status-box">
+          On
+        </span>
+      </div>
+      <!-- light button -->
+      <input type ="button" class="button"  onclick="garage.changeLight()" id="light_switch" value="Toggle Light Switch"/>
+      <!-- to go back to login page -->
+      <a class="button" onclick="load_login()" id="logout">
+        Log out
+      </a>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Advanced Setting Screen -->
+
+  <div id="advanced-settings-screen">
+    <div class="center-text">
+      <!-- added autoclose-button -->
+      <div id="autoCloseSection" class="settingsSection">
+        <div class="advanced">
+          Autoclose:
+          <input type ="button" class="button" onclick="garage.changeAutoClose()" id="autoClose_button" value="Turn On"/>
+        </div>
+        <!-- Slider with Starting Value, autoclose, from Material Design Lite -->
+        <p style="width:100%">
+          <input id="autocloseSlider" class="mdl-slider mdl-js-slider" type="range"  min="5" max="60" value="25" tabindex="0">
+        </p>
+        <div class="value" id="autocloseTime">25 s</div>
+      </div>
+
+
+      <!-- slidebar for light brightness added -->
+      <div id="brightnessSection" class="settingsSection">
+        <div class="advanced">
+          Light Brightness:
+        </div>
+        <p style="width:100%">
+          <input id="brightnessSlider" class="mdl-slider mdl-js-slider" type="range"  min="0" max="100" value="25" tabindex="0">
+        </p>
+        <div class="value" id="brightness">25%</div>
+      </div>
+
+      <!-- slidebar for light autooff added -->
+      <div id="autoOffSection" class="settingsSection">
+        <div class="advanced">
+          Light Auto-Off:
+          <input type ="button" class="button"  onclick="garage.changeAutoLight()" id="autoLight_button" value="Turn On"/>
+        </div>
+
+        <p style="width:100%">
+          <input id="autoOffSlider" class="mdl-slider mdl-js-slider" type="range"  min="1" max="60" value="25" tabindex="0">
+        </p>
+        <div class="value" id="autoOffTime">25 s</div>
+      </div>
+
+
+      <!-- button for done advanced -->
+      <a class="button" onclick="load_settings()" id="done-advanced">
+        Done
+      </a>
+
+    </div>
+    <!-- script tag to include particle's javascript library and object -->
+    <script type="text/javascript" src="./particle.min.js"></script>
+    <script src="./Garage.js"></script>
+    <script src="./GarageApp.js"></script>
+  </body>
+  </html>
